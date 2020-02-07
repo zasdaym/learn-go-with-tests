@@ -25,12 +25,12 @@ func TestShape(t *testing.T) {
 	}
 
 	for _, tt := range shapeTests {
-		t.Run(tt.name + " area", func(t *testing.T) {
+		t.Run(tt.name+" area", func(t *testing.T) {
 			got := tt.shape.Area()
 			check(t, got, tt.hasArea)
 		})
 
-		t.Run(tt.name + " perimeter", func(t *testing.T) {
+		t.Run(tt.name+" perimeter", func(t *testing.T) {
 			got := tt.shape.Perimeter()
 			check(t, got, tt.hasPerimeter)
 		})
