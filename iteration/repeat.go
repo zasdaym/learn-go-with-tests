@@ -1,4 +1,4 @@
-package iteration
+package main
 
 func Repeat(s string, count int) (result string) {
 	for i := 0; i < count; i++ {
