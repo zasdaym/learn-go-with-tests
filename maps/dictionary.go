@@ -9,8 +9,8 @@ func (e DictionaryErr) Error() string {
 }
 
 const (
-	ErrNotFound = DictionaryErr("Not found")
-	ErrWordExists = DictionaryErr("Word already exists")
+	ErrNotFound         = DictionaryErr("Not found")
+	ErrWordExists       = DictionaryErr("Word already exists")
 	ErrWordDoesNotExist = DictionaryErr("Word doesn't exist")
 )
 
