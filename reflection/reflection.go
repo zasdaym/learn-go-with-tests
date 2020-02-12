@@ -1,4 +1,4 @@
-package main
+package reflection
 
 import (
 	"reflect"
@@ -6,7 +6,7 @@ import (
 
 func walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
-	
+
 	walkValue := func(value reflect.Value) {
 		walk(value.Interface(), fn)
 	}
@@ -21,7 +21,7 @@ func walk(x interface{}, fn func(input string)) {
 	case reflect.Slice, reflect.Array:
 		for i := 0; i < val.Len(); i++ {
 			walkValue(val.Index(i))
-		}	
+		}
 	case reflect.Map:
 		for _, key := range val.MapKeys() {
 			walkValue(val.MapIndex(key))
@@ -31,10 +31,10 @@ func walk(x interface{}, fn func(input string)) {
 
 func getValue(x interface{}) reflect.Value {
 	val := reflect.ValueOf(x)
-	
-	if (val.Kind() == reflect.Ptr) {
+
+	if val.Kind() == reflect.Ptr {
 		val = val.Elem()
 	}
-	
+
 	return val
 }

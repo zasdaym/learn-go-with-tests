@@ -1,4 +1,4 @@
-package main
+package roman
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 var (
 	cases = []struct {
 		Arabic uint16
-		Roman string
+		Roman  string
 	}{
 		{Arabic: 1, Roman: "I"},
 		{Arabic: 2, Roman: "II"},

@@ -1,4 +1,4 @@
-package main
+package racer
 
 import (
 	"net/http"
@@ -26,21 +26,21 @@ func TestRacer(t *testing.T) {
 	t.Run("should return faster server", func(t *testing.T) {
 		slowServer := makeDelayedServer(20 * time.Millisecond)
 		fastServer := makeDelayedServer(0 * time.Millisecond)
-	
+
 		defer slowServer.Close()
 		defer fastServer.Close()
-	
+
 		want := fastServer.URL
 		got, err := Racer(slowServer.URL, fastServer.URL)
-	
+
 		if err != nil {
 			t.Errorf("not expected an error but get one %q", err)
 		}
-		
+
 		if got != want {
 			t.Errorf("got %q, want %q", got, want)
 		}
-	})	
+	})
 }
 
 func makeDelayedServer(delay time.Duration) *httptest.Server {

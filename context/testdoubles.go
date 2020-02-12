@@ -1,4 +1,4 @@
-package main
+package context
 
 import (
 	"context"
@@ -8,11 +8,13 @@ import (
 	"time"
 )
 
+// SpyStore allows you to simulate a store and see how its used
 type SpyStore struct {
 	response string
-	t *testing.T
+	t        *testing.T
 }
 
+// Fetch returns response after a short delay
 func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 	data := make(chan string, 1)
 
@@ -39,20 +41,24 @@ func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 	}
 }
 
+// SpyResponseWriter checks whether a response has been written
 type SpyResponseWriter struct {
 	written bool
 }
 
+// Header will mark written to true
 func (s *SpyResponseWriter) Header() http.Header {
 	s.written = true
 	return nil
 }
 
+// WriteHeader will mark written to true
 func (s *SpyResponseWriter) Write([]byte) (int, error) {
 	s.written = true
 	return 0, errors.New("not implemented")
 }
 
+// WriteHeader will mark written to true
 func (s *SpyResponseWriter) WriteHeader(statusCode int) {
 	s.written = true
 }

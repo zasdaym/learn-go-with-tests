@@ -1,4 +1,4 @@
-package main
+package concurrency
 
 import (
 	"reflect"
@@ -20,9 +20,9 @@ func TestCheckWebsites(t *testing.T) {
 	}
 
 	want := map[string]bool{
-		"http://google.com": true,
+		"http://google.com":  true,
 		"http://example.com": true,
-		"http://mock.mock": false,
+		"http://mock.mock":   false,
 	}
 
 	got := CheckWebsites(mockWebsiteChecker, websites)

@@ -1,11 +1,11 @@
-package main
+package roman
 
 import (
 	"strings"
 )
 
 type romanNumeral struct {
-	Value uint16
+	Value  uint16
 	Symbol string
 }
 
@@ -32,7 +32,7 @@ func (r romanNumerals) Exists(symbols ...byte) bool {
 	return false
 }
 
-var allRomanNumerals = romanNumerals {
+var allRomanNumerals = romanNumerals{
 	{1000, "M"},
 	{900, "CM"},
 	{500, "D"},
@@ -69,6 +69,7 @@ func isSubstractive(symbol byte) bool {
 	return symbol == 'I' || symbol == 'X' || symbol == 'C'
 }
 
+// ConvertToRoman returns a roman version of arabic number
 func ConvertToRoman(arabic uint16) string {
 	var result strings.Builder
 
@@ -82,6 +83,7 @@ func ConvertToRoman(arabic uint16) string {
 	return result.String()
 }
 
+// ConvertToArabic returns a arabic version of roman number
 func ConvertToArabic(roman string) (total uint16) {
 	for _, symbols := range windowedRoman(roman).Symbols() {
 		total += allRomanNumerals.ValueOf(symbols...)

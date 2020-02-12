@@ -1,4 +1,4 @@
-package main
+package reflection
 
 import (
 	"reflect"
@@ -6,21 +6,21 @@ import (
 )
 
 type Person struct {
-	Name string
+	Name    string
 	Profile Profile
 }
 
 type Profile struct {
-	Age int
+	Age  int
 	City string
 }
 
 func TestWalk(t *testing.T) {
-	cases := []struct{
-		Name string
-		Input interface{}
+	cases := []struct {
+		Name          string
+		Input         interface{}
 		ExpectedCalls []string
-	} {
+	}{
 		{
 			"Struct with one string field",
 			struct {
@@ -40,7 +40,7 @@ func TestWalk(t *testing.T) {
 			"Struct with non string field",
 			struct {
 				Name string
-				Age int
+				Age  int
 			}{"Robot", 20},
 			[]string{"Robot"},
 		},
@@ -62,7 +62,7 @@ func TestWalk(t *testing.T) {
 		},
 		{
 			"Slices",
-			[]Profile {
+			[]Profile{
 				{20, "Olympus"},
 				{21, "Alexandria"},
 			},
@@ -70,7 +70,7 @@ func TestWalk(t *testing.T) {
 		},
 		{
 			"Arrays",
-			[2]Profile {
+			[2]Profile{
 				{20, "Olympus"},
 				{21, "Alexandria"},
 			},
@@ -93,8 +93,8 @@ func TestWalk(t *testing.T) {
 
 	t.Run("Maps", func(t *testing.T) {
 		aMap := map[string]string{
-			"foo":"bar",
-			"baz":"boz",
+			"foo": "bar",
+			"baz": "boz",
 		}
 
 		var got []string

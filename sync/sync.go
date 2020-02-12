@@ -1,11 +1,11 @@
-package main
+package sync
 
 import (
 	"sync"
 )
 
 type Counter struct {
-	mu sync.Mutex
+	mu    sync.Mutex
 	value int
 }
 
